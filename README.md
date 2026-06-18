@@ -1,16 +1,81 @@
-# React + Vite
+# 📸 Dynamic Gallery App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive, optimized React image gallery that showcases dynamic content layouts utilizing server-state caching and asynchronous performance features.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Key Features
 
-## React Compiler
+*   **Server State Management**: Implements **TanStack React Query (v5)** for robust, automatic browser caching and network layer state synchronization.
+*   **API Integration**: Consumes the real-time public [Lorem Picsum API](https://picsum.photos/) list endpoint.
+*   **Robust Pagination**: Features dynamic page step adjustments along with button validation guards based on network layout constraints.
+*   **Fluid Responsive Layout**: Uses **Tailwind CSS** alongside arbitrary pixel values to handle highly fluid, multi-row flex containers.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack & Architecture
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+*   **Core UI Library**: React (Vite environment template)
+*   **Styles**: Tailwind CSS
+*   **Data Fetching Client**: Axios
+*   **Cache Management Middleware**: TanStack React Query v5
+*   **Vector Icons**: Lucide React
+
+---
+
+## 📡 API Endpoint Details
+
+The application communicates directly with the following JSON service structure:
+*   **Base Target URL**: `https://picsum.photos/v2/list`
+*   **Request Method**: `GET`
+*   **Query Strings Handled**:
+    *   `page`: Controls current payload offset context.
+    *   `limit`: Sets the exact quantity threshold returned per frame (configured to `20`).
+
+---
+
+## 💻 Code Architecture Overview
+
+### API Client Wrapper (`src/apiCall.js`)
+Handles the asynchronous low-level HTTP transport layer. It unwraps the strict Axios response structure to return pure data blocks directly to the React Query cache manager.
+
+```javascript
+import axios from 'axios';
+
+const getGalleryDataFromAPI = async (page, limit) => {
+  const response = await axios.get(`https://picsum.photos{page}&limit=${limit}`);
+  return response.data;
+};
+
+export default getGalleryDataFromAPI;
+```
+
+### Main Presentation Screen (`src/GalleryScreen2.jsx`)
+Coordinates reactive UI synchronization. It automatically links state properties with Query Cache Keys to isolate page mutations seamlessly.
+
+*   **Dynamic Layout Rendering**: Calculates randomized container styles on the fly without breaking structural class composition targets.
+*   **Pagination Safeguards**: Evaluates server bounds cleanly using array-length metadata metrics to prevent boundary index overruns.
+
+---
+
+## 📦 Local Installation & Setup
+
+Follow these quick steps to execute and preview this application framework locally:
+
+### 1. Clone the Project Repository
+```bash
+git clone <your-repository-ssh-or-https-url>
+cd <your-project-directory-name>
+```
+
+### 2. Install Project Dependencies
+```bash
+npm install
+```
+
+### 3. Run the Development Server
+```bash
+npm run dev
+```
+
+Open the local network host URL displayed in your terminal configuration (typically `http://localhost:5173`) to view and interact with your responsive media gallery framework.
