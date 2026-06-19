@@ -16,9 +16,9 @@ const getGalleryDataFromAPI = async (page=1, limitPerPage=30) => {
 
     try {
 
-        const {data} = await axios.get(`${url}?page=${page}&limit=${limitPerPage}`);
-        apiCache[cacheKey] = data;
-        return data;
+        const response = await axios.get(`${url}?page=${page}&limit=${limitPerPage}`);
+        apiCache[cacheKey] = response.data;
+        return response.data;
 
     }
     catch{

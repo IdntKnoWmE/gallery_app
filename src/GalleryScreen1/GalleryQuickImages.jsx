@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import getGalleryDataFromAPI from "../apiCall.js";
 import GalleryScreen1Card from "./GalleryScreen1Card.jsx";
-import {CircleArrowRight, CircleArrowLeft} from 'lucide-react';
 
 function GalleryQuickImages() {
 
@@ -84,15 +83,21 @@ function GalleryQuickImages() {
             <div className="flex gap-2 justify-center items-center">
 
                 <button onClick={handlePrevClick}
-                    className="cursor-pointer transition-all duration-100 ease-in-out
-                                    hover:scale-105 active:scale-95">
-                    <CircleArrowLeft size={50} color="purple" />
+                        className="cursor-pointer transition-all duration-100 ease-in-out
+                                    hover:scale-110 active:scale-90"
+                >
+
+                    <img className="w-20 h-20" src="https://img.icons8.com/clouds/100/left.png" alt="left"/>
+
                 </button>
+
                 <button onClick={handleNextClick}
-                    className="cursor-pointer transition-all duration-100 ease-in-out
-                                    hover:scale-105 active:scale-95">
-                    <CircleArrowRight size={50} color="green" />
+                        className="cursor-pointer transition-all duration-100 ease-in-out
+                                    hover:scale-110 active:scale-90"
+                >
+                    <img className="w-20 h-20" src="https://img.icons8.com/clouds/100/right.png" alt="right"/>
                 </button>
+
             </div>
         </div>
     );

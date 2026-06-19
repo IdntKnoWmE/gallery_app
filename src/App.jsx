@@ -4,7 +4,7 @@ import GalleryScreen2 from "./GalleryScrren2/GalleryScreen2.jsx";
 
 function App() {
     return (
-        <div className="w-full">
+        <div className="w-full scrollbar-thin">
             <GalleryScreen1/>
             <GalleryScreen2/>
         </div>
