@@ -7,9 +7,9 @@ function GalleryScreen1Card({item, z, scale, shadowBorder, hover}) {
         <>
             <div className={`
                         w-95 h-[58vh] ${z} ${scale} my-auto overflow-hidden
-                        transition-transform duration-300
+                        transition-all duration-500 ease-in-out
                         border rounded-2xl border-indigo-200 shrink-0
-                        ${shadowBorder}  ${hover} hover:z-50
+                        ${shadowBorder}  ${hover} hover:z-50 
                         `}
             >
                 {item?(

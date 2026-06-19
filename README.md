@@ -8,7 +8,7 @@ A responsive, optimized React image gallery that showcases dynamic content layou
 
 *   **Server State Management**: Implements **TanStack React Query (v5)** for robust, automatic browser caching and network layer state synchronization.
 *   **API Integration**: Consumes the real-time public [Lorem Picsum API](https://picsum.photos/) list endpoint.
-*   **Robust Pagination**: Features dynamic page step adjustments along with button validation guards based on network layout constraints.
+*   **Hybrid Designed Pagination**: Features a fun, dual-pagination system using both highly-customizable **Material-UI (MUI)** page bars and custom icon-based pagination guards.
 *   **Fluid Responsive Layout**: Uses **Tailwind CSS** alongside arbitrary pixel values to handle highly fluid, multi-row flex containers.
 
 ---
@@ -16,10 +16,10 @@ A responsive, optimized React image gallery that showcases dynamic content layou
 ## 🛠️ Tech Stack & Architecture
 
 *   **Core UI Library**: React (Vite environment template)
-*   **Styles**: Tailwind CSS
+*   **Styles & Layout**: Tailwind CSS
+*   **Component & Design System**: Material-UI (MUI) & Emotion
 *   **Data Fetching Client**: Axios
 *   **Cache Management Middleware**: TanStack React Query v5
-*   **Vector Icons**: Lucide React
 
 ---
 
@@ -53,8 +53,9 @@ export default getGalleryDataFromAPI;
 ### Main Presentation Screen (`src/GalleryScreen2.jsx`)
 Coordinates reactive UI synchronization. It automatically links state properties with Query Cache Keys to isolate page mutations seamlessly.
 
+*   **Dual-Pagination Controls**: Connects TanStack React Query's cached page states simultaneously to an elegant MUI `<Pagination />` bar and standalone icon triggers.
 *   **Dynamic Layout Rendering**: Calculates randomized container styles on the fly without breaking structural class composition targets.
-*   **Pagination Safeguards**: Evaluates server bounds cleanly using array-length metadata metrics to prevent boundary index overruns.
+*   **Pagination Safeguards**: Evaluates server bounds cleanly using array-length metadata metrics and React Query's `keepPreviousData` to prevent boundary index overruns and UI flickering.
 
 ---
 
@@ -70,6 +71,7 @@ cd <your-project-directory-name>
 
 ### 2. Install Project Dependencies
 ```bash
+npm install @tanstack/react-query axios @mui/material @emotion/react @emotion/styled
 npm install
 ```
 
